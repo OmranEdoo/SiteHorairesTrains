@@ -6,16 +6,38 @@ const mainLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{
 });
 mainLayer.addTo(map);
 
+
+var trains = [];
+
+function chooseType() {
+    var infos = document.getElementById("infos");
+    var dropdown = document.getElementById("types");
+    infos.innerHTML = convertType(dropdown.value);
+    console.log(trains);
+    console.log("test");
+}
+
+function convertType(type){
+    let liste = type.match(/[A-Z][a-z]+/g);
+    let new_type = liste[0];
+    liste = liste.splice(1,liste.length);
+    liste.forEach(mot => {
+        new_type = new_type + " " + mot.toLowerCase();
+    })
+    return new_type;
+}
+
 function getInfos() {
     var infos = document.getElementById("infos");
     var time = document.getElementById("time").value;
     var station_name = document.getElementById("station").value;
+    var dropdown = document.getElementById("types");
     time = time.replace(':','').concat("00");
     var station_id = "";
+    var types = [];
 
     //console.log(points);
     points.forEach(elt => {
-        //console.log(elt.name);
         if(elt.name == station_name){
             map.setView([elt.coord.lat, elt.coord.lon], 15);
             station = L.marker([elt.coord.lat, elt.coord.lon]);
@@ -23,8 +45,15 @@ function getInfos() {
             station.addTo(map);
             station_id = elt.id;
             console.log(station_id);
-            let trains = find_train(station_id);
-            console.log(trains);
+            types.push(elt.id.split(':')[3]);
+            find_train(station_id);
         }
     })
+    types.forEach(type => {
+        var elt = document.createElement("option");
+        elt.textContent = convertType(type);
+        elt.value = type;
+        dropdown.appendChild(elt);
+    })
+    trains = getTrains();
 }
