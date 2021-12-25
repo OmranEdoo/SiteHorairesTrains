@@ -1,4 +1,6 @@
 var station_name = document.getElementById("station").value;
+var res = "";
+var time = document.getElementById("time").value;
 
 var path = {
     coverage: "sandbox",
@@ -6,7 +8,8 @@ var path = {
 };
 var feature = "terminus_schedules";
 var parameters = {
-    items_per_schedule: 2
+    items_per_schedule: 2,
+    from_datetime: time
 };
 
 var request = new Request(path, feature, parameters);
@@ -17,7 +20,7 @@ var headers = new Headers();
 headers.append('Authorization', 'Basic ' + btoa(token + ':'));
 
 function buildInfos(direction, ligne, times) {
-    let res = direction.concat(" ", ligne, "<p>Prochain train: ", convert_time(times[0].date_time), "</p><p>Suivant: ", convert_time(times[1].date_time), "</p>");
+    res = res.concat(direction, " ", ligne, "<p>Prochain train: ", convert_time(times[0].date_time), "</p><p>Suivant: ", convert_time(times[1].date_time), "</p>");
     return res;
 }
 
