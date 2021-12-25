@@ -1,16 +1,24 @@
 var station_name = document.getElementById("station").value;
 var res = "";
-var time = document.getElementById("time").value;
+var time = getTime();
 
 var path = {
     coverage: "sandbox",
-    stop_areas: getId(station_name)//ex: "stop_area:RAT:SA:GDLYO"
+    stop_areas: getId(station_name)
 };
 var feature = "terminus_schedules";
-var parameters = {
-    items_per_schedule: 2,
-    from_datetime: time
-};
+
+if(time){
+    var parameters = {
+        items_per_schedule: 2,
+        from_datetime: time
+    };
+} else {
+    var parameters = {
+        items_per_schedule: 2
+    };
+}
+
 
 var request = new Request(path, feature, parameters);
 var url = request.getUrl();
@@ -20,7 +28,7 @@ var headers = new Headers();
 headers.append('Authorization', 'Basic ' + btoa(token + ':'));
 
 function buildInfos(direction, ligne, times) {
-    res = res.concat(direction, " ", ligne, "<p>Prochain train: ", convert_time(times[0].date_time), "</p><p>Suivant: ", convert_time(times[1].date_time), "</p>");
+    res = res.concat(station_name, " > ", direction, " ", ligne, "<p>Prochain train: ", convert_time(times[0].date_time), "</p><p>Suivant: ", convert_time(times[1].date_time), "</p>");
     return res;
 }
 
