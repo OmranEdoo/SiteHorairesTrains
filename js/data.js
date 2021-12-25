@@ -8,9 +8,7 @@ var page_trains = 1;
 var index = 1;
 var next_arrival;
 var step = 1;
-var trains = [];//dictionnaire avec tous les types de trains
-var last_id = "";
-
+var trains = {};
 var url_stop_points = "https://api.sncf.com/v1/coverage/sncf/stop_points?count=1000&start_page=";
 var url_vehicle_journeys = "https://api.sncf.com/v1/coverage/sncf/vehicle_journeys?count=1000&start_page=";
 var headers = new Headers();
@@ -19,10 +17,6 @@ headers.append('Authorization', 'Basic ' + btoa(sncf_key + ':'));
 
 function getTrains(){
     return trains;
-}
-
-function getType(){
-    return//type du train
 }
 
 function create_points(){
@@ -54,11 +48,14 @@ function find_train(station_id){
                 Object.entries(data.vehicle_journeys).forEach(([key, value_1]) => {
                     value_1.stop_times.forEach(train => {
                         if (train.stop_point.id == station_id) {
-                            console.log(trains);
-                            if(//en fct du type du train instancien le dictionnaire trains){
-                                trains[trains.length].push(train);
+                            if(trains[train.stop_point.id]){
+                                let liste_trains = trains[train.stop_point.id.split(':')[3]];
+                                liste_trains.push(train);
+                                trains[train.stop_point.id.split(':')[3]] = liste_trains;
+                            } else {
+                                let liste_trains = new Array(train)
+                                trains[train.stop_point.id.split(':')[3]] = liste_trains;
                             }
-                                
                             if (step == 1) {
                                 step++;
                             }
@@ -80,5 +77,3 @@ function find_train(station_id){
             }
         })
 }
-
-//creer classe ou enum types (de train)
