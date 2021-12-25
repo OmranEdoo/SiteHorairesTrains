@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Prochains trains</title>
+    <link rel="stylesheet" href="../css/page.css">
+    <link rel="stylesheet" href="../css/terminus_schedules.css">
+  </head>
+  <body id="body">
+    <h1>Prochains trains:</h1>
+    <div id="flex">
+      <input type="time" name="time" id="time" required>
+      <input type="station" name="text" id="station" required>
+      <input type="button" id="button" value="info train" onclick="getInfos()">
+      <h2 id="infos"></h2>
+    </div>
+      <div id="bas">
+        <a href="">Contact</a>
+        <a href="">Informations</a>
+      </div>
+
+      <script src="../js/request_builder.js"></script>
+      <script src="../js/time.js"></script>
+      <script src="../js/stop_areas.js"></script>
+      <script src="../js/index.js"></script>
+      <!--<script src="js/data.js"></script>
+      -->
+  </body>
+</html>

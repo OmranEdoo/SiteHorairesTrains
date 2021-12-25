@@ -3,24 +3,26 @@
   <head>
     <meta charset="utf-8">
     <title>Catch your train</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-   crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-   crossorigin=""></script>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-      <p>Heure de départ</p>
-      <input type="time" name="time" id="time" required>
-      <input type="station" name="text" id="station" required>
-      <input type="button" id="b" value="info train" onclick="getInfos()">
-      <select name="types" id="types" onclick="chooseType()"></select>
-      <p id="infos"></p>
-      <div id="mapid"></div>
-
-      <script src="js/data.js"></script>
-      <script src="js/index.js"></script>
+      <img id="logo" src="img/logo.svg" alt="">
+      <h1>Trouvez rapidement les horaires de vos trains</h1>
+      <div id="carte" class="rond" onclick="window.location.href='html/map.html'">
+          <h2>Trouver une station sur la carte</h2>
+      </div>
+      <div id="recherche" class="rond" onclick="window.location.href='html/terminus_schedules.html'">
+          <h2>Rechercher le nom d'une station</h2>
+      </div>
+      <div id="tableau" class="rond" onclick="window.location.href='html/tab.html'">
+          <h2>Voir un tableau d'horaire</h2>
+      </div>
+      <div id="itineraire" class="rond" onclick="window.location.href='html/itineraire.html'">
+          <h2>Chercher un itinéraire</h2>
+      </div>
+      <div id="bas">
+          <a href="">Contact</a>
+          <a href="">Informations</a>
+      </div>
   </body>
 </html>

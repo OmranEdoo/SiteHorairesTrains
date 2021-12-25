@@ -1,0 +1,59 @@
+body {
+    display: grid;
+    grid-template-rows: 1fr 14fr 1fr;
+    grid-template-columns: 1fr
+}
+
+h1 {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+#flex {
+    grid-row: 2;
+    grid-column: 1;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    gap: 5% 5%;
+}
+
+#time {
+    flex: 1;
+    width: 5%;
+    height: 5%;
+    justify-self: center;
+}
+
+#station {
+    flex: 3;
+    width: 5%;
+    height: 10%;
+    justify-self: center
+}
+
+#button {
+    flex: 4;
+    width: 5%;
+    height: 10%;
+    justify-self: center
+}
+
+#infos{
+    order: -1;
+    width: 5%;
+    height: 30%;
+    justify-self: center
+}
+
+#bas {
+    display: flex;
+    background: rgb(39, 37, 37);
+    grid-area: 3/1/4/2;
+    align-items: center
+}
+
+a {
+    color: rgb(172, 169, 169);
+    margin: 10px
+}
