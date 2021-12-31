@@ -75,18 +75,21 @@ h2 {
     grid-row: 4;
     grid-column: 4/6;
     background-image: linear-gradient(to bottom right, rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)), url("../img/recherche.png");
+    font-family: "Helvetica Neue"
 }
 
 #tableau {
     grid-row: 5;
     grid-column: 2/4;
     background-image: linear-gradient(to bottom right, rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)), url("../img/tableau.png");
+    font-family: "Helvetica Neue"
 }
 
 #itineraire {
     grid-row: 5;
     grid-column: 4/6;
     background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)), url("../img/itineraire.png");
+    font-family: "Helvetica Neue"
 }
 
 #bas {

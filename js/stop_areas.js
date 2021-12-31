@@ -1,33 +1,40 @@
-var path = {
-    coverage: "sandbox"
-};
-var feature = "stop_areas";
-var parameters = {
-    count: 7
-};
-
-var request = new Request(path, feature, parameters);
-var url = request.getUrl();
-var token = request.getKey();
-
-var headers = new Headers();
-headers.append('Authorization', 'Basic ' + btoa(token + ':'));
-
 var stop_areas;
 
-// extraction des données de la table pour ne plus le refaire par la suite
-fetch(url, {headers: headers})
+var idPromise = function getId(station_name){
+    return new Promise((resolve, reject) => {
+        var station_id;
+
+        var path = {
+            coverage: "fr-idf"
+        };
+
+        var feature = "pt_objects";
+        
+        var parameters = {
+            q: station_name,
+            "type[]": "stop_area"
+        };
+        
+        var request = new Request(path, feature, parameters);
+
+        var url = request.getUrl();
+        var token = request.getKey();
+
+        var headers = new Headers();
+        headers.append('Authorization', 'Basic ' + btoa(token + ':'));
+        
+        fetch(url, {headers: headers})
         .then(response => response.json())
         .then(data => {
-            stop_areas = data;
-        })
+            let id = data.pt_objects[0].id;
+            station_id = id;
+            if(station_id) {
+                resolve(station_id);
+            } else {
+                reject("error");
+            }
+            
+        });
+    })
 
-function getId(name){
-    let id = "";
-    stop_areas.stop_areas.forEach(elt => {
-        if(elt.name == name) {
-            id = elt.id;
-        }
-    });
-    return id;
 }

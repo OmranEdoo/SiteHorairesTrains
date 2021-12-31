@@ -3,27 +3,41 @@
   <head>
     <meta charset="utf-8">
     <title>Prochains trains</title>
-    <link rel="stylesheet" href="../css/page.css">
     <link rel="stylesheet" href="../css/terminus_schedules.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/auto_completion.css">
   </head>
   <body id="body">
-    <h1>Prochains trains:</h1>
-    <div id="flex">
-      <input type="time" name="time" id="time" required>
-      <input type="station" name="text" id="station" required>
-      <input type="button" id="button" value="info train" onclick="getInfos()">
-      <h2 id="infos"></h2>
+    <div id="bg_image"></div>
+    <div id=sidebar>
+      <ul id="onglets">
+        <li class="onglet"> </li>
+        <li class="onglet" onclick="window.location.href='../index.html'">Accueil</li>
+        <li class="onglet" onclick="window.location.href='../html/itineraire.html'">Itinéraire</li>
+        <li class="onglet" onclick="window.location.href='../html/carte.html'">Carte</li>
+        <li class="onglet" onclick="window.location.href='../html/tab.html'">Tableau</li>
+      </ul>
     </div>
-      <div id="bas">
-        <a href="">Contact</a>
-        <a href="">Informations</a>
+    <div id="content">
+      <h1>Prochains trains:</h1>
+      <div id="background">
+        <form id="auto-suggest" action="#" method="post">
+          <input type="time" name="time" id="time" required>
+          <input type="station" name="station" id="station" value="Rechercher..." onfocus="if(this.value=='Rechercher...')this.value=''" required>
+          <input type="button" id="button" value="info train" onclick="getInfos()"><!--getInfos() se trouve dans index.js-->
+        </form>
+        <h2 id="infos"></h2>
       </div>
-
-      <script src="../js/request_builder.js"></script>
-      <script src="../js/time.js"></script>
-      <script src="../js/stop_areas.js"></script>
-      <script src="../js/index.js"></script>
-      <!--<script src="js/data.js"></script>
-      -->
+    </div>
+    <div id="bas">
+      <a href="">Contact</a>
+      <a href="">Informations</a>
+    </div>
+      
+    <script src="../js/request_builder.js"></script>
+    <script src="../js/auto_completion.js"></script>
+    <script src="../js/time.js"></script>
+    <script src="../js/stop_areas.js"></script>
+    <script src="../js/index.js"></script>
   </body>
 </html>

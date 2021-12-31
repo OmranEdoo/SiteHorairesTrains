@@ -1,59 +1,103 @@
 body {
-    display: grid;
-    grid-template-rows: 1fr 14fr 1fr;
-    grid-template-columns: 1fr
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to bottom right, rgb(182, 18, 59), rgb(58, 124, 121));
+    /*background-size: cover;
+    background-blend-mode: lighten;*/
+    background-attachment: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    text-align: center;
+    z-index: -1;
+}
+
+#bg_image {
+    position: fixed;
+    background: url("../img/astro2.jpg");
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.15;
+    background-position: center;
+    background-size: cover;
+    z-index: -1;
+}
+
+#sidebar {
+    opacity: 0.8;
+    width: 300px;
+    position: fixed;
+    height: 100%;
+    background: rgb(255, 255, 255);
+    justify-content: center;
+}
+
+#background {
+    background: rgb(172, 169, 169, 0.5);
+    height: calc(100% - 94px);
+    flex-grow: 2;
+}
+
+#content {
+    flex-basis: calc(100% - 300px);
+    height: calc(100% - 30px);
+    padding-left: 300px;
 }
 
 h1 {
-    grid-row: 1;
-    grid-column: 1;
-}
-
-#flex {
-    grid-row: 2;
-    grid-column: 1;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    gap: 5% 5%;
+    height: 50px;
+    font-family: system-ui;
+    text-align: start;
+    margin-left: 50px;
 }
 
 #time {
-    flex: 1;
-    width: 5%;
-    height: 5%;
-    justify-self: center;
+    width: 70px;
+    height: 30px;
 }
 
 #station {
-    flex: 3;
-    width: 5%;
-    height: 10%;
-    justify-self: center
+    width: 400px;
+    height: 30px;
+    color: #000;
 }
 
 #button {
-    flex: 4;
-    width: 5%;
-    height: 10%;
-    justify-self: center
+    width: 100px;
+    height: 30px;
 }
 
 #infos{
-    order: -1;
-    width: 5%;
-    height: 30%;
-    justify-self: center
+    flex-basis: calc(100% - 300px);
+    height: auto;
+    text-align: start;
+    padding-top: 1%;
+    padding-left: 2%;
 }
 
 #bas {
     display: flex;
-    background: rgb(39, 37, 37);
-    grid-area: 3/1/4/2;
-    align-items: center
+    position: fixed;
+    top: calc(100% - 30px);
+    width: 100%;
+    height: 30px;
+    background: rgb(39, 39, 39);
+    text-align: start;
+    align-items: center;
 }
 
 a {
     color: rgb(172, 169, 169);
-    margin: 10px
+    margin: 10px;
 }
+
+@media screen and (max-width: 800px) {
+    #sidebar {
+      width: 0;
+    }
+    .onglet {
+        height: 0;
+    }
+  }
