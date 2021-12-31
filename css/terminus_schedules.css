@@ -97,7 +97,11 @@ a {
     #sidebar {
       width: 0;
     }
-    .onglet {
-        height: 0;
+}
+
+@media screen and (max-width: 800px) {
+    #content {
+        flex-basis: 100%;
+        padding-left: 0;
     }
-  }
+}

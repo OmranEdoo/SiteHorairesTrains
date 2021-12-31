@@ -6,7 +6,6 @@
     width: 290px;
     height: 40px;
     list-style-type: none;
-	background: rgb(255, 255, 255);
 	font-family: monospace;
 	font-size: 25px;
 	color: rgb(0, 0, 0);
@@ -14,4 +13,12 @@
 
 .onglet:hover {
     color: thistle;
+}
+
+@media screen and (max-width: 800px) {
+    .onglet {
+        width: 0;
+        height: 0;
+        font-size: 0;
+    }
 }
