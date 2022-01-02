@@ -106,7 +106,7 @@ h2 {
     display: flex;
     align-items: center;
     width: 40vw;
-    height: 20vw;
+    height: 15vw;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -119,8 +119,8 @@ h2 {
 }
 
 .rond:hover {
-    width: 42vw;
-    height: 21vw;
+    width: 45vw;
+    height: 18vw;
     background-color: wheat;
     background-position: left;
 }
