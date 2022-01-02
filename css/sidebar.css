@@ -17,8 +17,6 @@
 
 @media screen and (max-width: 800px) {
     .onglet {
-        width: 0;
-        height: 0;
         font-size: 0;
     }
 }
