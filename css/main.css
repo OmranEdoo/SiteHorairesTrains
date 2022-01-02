@@ -104,6 +104,7 @@ h2 {
 
 .rond {
     display: flex;
+    position: relative;
     align-items: center;
     width: 40vw;
     height: 15vw;
@@ -116,6 +117,7 @@ h2 {
     margin-left: calc(50% - 6vw);
     box-shadow: -10px 10px 10px 0px rgba(0,0,0,.8);
     text-align: center;
+    opacity: 0;
 }
 
 .rond:hover {
@@ -127,7 +129,24 @@ h2 {
 
 .rond:hover h2 {
     color: black;
+    opacity: 1;
 }
+
+.rond.active {
+    opacity: 1;
+    animation: fade 0.4s ease-in;
+}
+
+@keyframes fade {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
 
 #carte {
     background-image: url("../img/carte.png");
