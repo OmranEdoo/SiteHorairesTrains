@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Prochains trains</title>
-    <link rel="stylesheet" href="../css/terminus_schedules.css">
+    <link rel="stylesheet" href="../css/tableau.css">
     <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="stylesheet" href="../css/auto_completion.css">
   </head>
@@ -22,11 +22,14 @@
       <h1>Prochains trains:</h1>
       <div id="background">
         <form id="auto-suggest" action="#" method="post">
-          <input type="time" name="time" id="time" required>
           <input type="station" name="station" id="station" value="Rechercher..." onfocus="if(this.value=='Rechercher...')this.value=''" required>
           <input type="button" id="button" value="info train" onclick="getInfos()"><!--getInfos() se trouve dans index.js-->
         </form>
-        <h2 id="infos"></h2>
+        <table id="infos">
+          <tr></tr>
+          <tr></tr>
+          <tr></tr>
+        </table>
       </div>
     </div>
     <div id="bas">
