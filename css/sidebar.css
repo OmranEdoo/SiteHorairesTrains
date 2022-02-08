@@ -1,3 +1,12 @@
+#sidebar {
+    width: 300px;
+    position: fixed;
+    height: 100%;
+    background: rgb(241, 197, 255);
+    justify-content: center;
+    z-index: 20;
+}
+
 #onglets {
     padding-left: 4px;
 }

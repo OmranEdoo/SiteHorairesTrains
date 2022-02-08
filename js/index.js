@@ -1,8 +1,8 @@
-function getInfos() {
+function getInfos(path) {
     let station = document.getElementById("station").value;
     if(station){
         let script = document.createElement("script");
-        script.src = "../js/terminus_schedules2.js";
+        script.src = path;
         let body = document.getElementById("body");
         body.appendChild(script);
         let background = document.getElementById("background");

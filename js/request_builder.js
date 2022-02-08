@@ -27,11 +27,11 @@ class Request {
 
     getUrl() {
         let url = this.API;
-        Object.entries(path).forEach(([key, value]) => {
+        Object.entries(this.path).forEach(([key, value]) => {
             url = url.concat("/", this.modifyKeyPath(key), "/", this.modifyValuePath(value))
         })
-        url = url.concat("/", feature, "?");
-        Object.entries(parameters).forEach(([key, value]) => {
+        url = url.concat("/", this.feature, "?");
+        Object.entries(this.parameters).forEach(([key, value]) => {
             if(typeof value != String) {
                 value.toString();
             }

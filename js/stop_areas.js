@@ -1,9 +1,8 @@
 var stop_areas;
 
-var idPromise = function getId(station_name){
+var idPromise = function getId(){
     return new Promise((resolve, reject) => {
-        var station_id;
-
+        var station_id;    
         var path = {
             coverage: "fr-idf"
         };
@@ -16,10 +15,8 @@ var idPromise = function getId(station_name){
         };
         
         var request = new Request(path, feature, parameters);
-
-        var url = request.getUrl();
+        var url = request.getUrl();/////
         var token = request.getKey();
-
         var headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(token + ':'));
         
