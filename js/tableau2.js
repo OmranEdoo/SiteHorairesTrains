@@ -1,6 +1,22 @@
 var station_name = document.getElementById("station").value;
 var res = "";
 
+function fillTab(elt){
+    let edi = elt.display_informations;
+    let times = elt.date_times;
+    let c12 = document.createElement("th");
+    c12.innerHTML = "<div id='column_expand'><b class='num ".concat(edi.label, "'></b><img src='' alt='' class='picto ", edi.label, "'><p> ", edi.direction, "</p></div>");
+    c1.appendChild(c12);
+    let c = document.createElement("td");
+    c.id = "c";
+    times.forEach(time => {
+        let cc = document.createElement("tr");
+        cc.innerHTML = convert_time(time.date_time);
+        c.appendChild(cc)
+    })
+    c2.appendChild(c);
+}
+
 idPromise()
     .then((station_id) => {
         setTimeout(function(){console.log(station_id)},500);
@@ -16,29 +32,12 @@ idPromise()
             from_datetime: getActualTime().slice(0, 9).concat("000000")
         }
 
-
         request = new Request(path, feature, parameters);
         url = request.getUrl();
         token = request.getKey();
 
         headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(token + ':'));
-
-        function fillTab(elt, tab){
-            let edi = elt.display_informations;
-            let times = elt.date_times;
-            let c12 = document.createElement("th");
-            c12.innerHTML = "<div id='column_expand'><img src='' alt='' class='picto ".concat(edi.label, "'><p> ", edi.direction, "</p></div>");
-            c1.appendChild(c12);
-            let c = document.createElement("td");
-            c.id = "c";
-            times.forEach(time => {
-                let cc = document.createElement("tr");
-                cc.innerHTML = convert_time(time.date_time);
-                c.appendChild(cc)
-            })
-            c2.appendChild(c);
-        }
 
         fetch(url, {headers: headers})
             .then(response => response.json())
@@ -65,19 +64,7 @@ idPromise()
                     nb++;
                     let edi = elt.display_informations;
                     fillTab(elt, tab);
-                    var url_2 = "https://data.ratp.fr/api/records/1.0/search/?dataset=pictogrammes-des-lignes-de-metro-rer-tramway-bus-et-noctilien&q=&lang=fr&rows=1&sort=indices_commerciaux&refine.indices_commerciaux=".concat(edi.label);
-                    fetch(url_2)
-                        .then(response => response.json())
-                        .then(data => {
-                            var pictos = document.getElementsByClassName(edi.label);
-                            Object.entries(pictos).forEach(([key, picto]) => {
-                                if(data.records[0]) {
-                                    picto.src = "../img/picto/".concat(data.records[0].fields.noms_des_fichiers.filename);
-                                } else {
-                                    picto.alt = edi.label;
-                                }
-                            })
-                        });
+                    drawPicto(edi);
                 });
             })
 })

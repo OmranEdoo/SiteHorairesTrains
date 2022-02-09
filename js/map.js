@@ -1,11 +1,14 @@
-const map = create_map();
+const centre_lat = 48.850829615512964; 
+const centre_lng = 2.3453325726123047;
+
+const map = create_map(centre_lat, centre_lng);
 
 let zone = L.circle([centre_lat, centre_lng], 0);
 let markers = [];
 
 var res = "";
 
-function buildInfos(direction, ligne, times) {
+function buildInfos(value, direction, ligne, times) {
     if(times[0]){
         res = res.concat(value.name, " > ", direction, " <b class='num ", ligne,"'></b><img src='' alt='' class='picto ", ligne, "'>", "<p>   Prochain train: ", convert_time(times[0].date_time), "</p>");
     }
@@ -15,9 +18,37 @@ function buildInfos(direction, ligne, times) {
     return res;
 }
 
-function found_station(e){
-    console.log(e.latlng);
+function writeInfos(value){
+    res = "";
+    map.setView(value.coord, 17);
+    path = {
+        coverage: "fr-idf",
+        stop_areas: value.id
+    };
 
+    feature = "terminus_schedules";
+
+    request = new Request(path, feature, parameters);
+    url = request.getUrl();
+    token = request.getKey();
+
+    headers = new Headers();
+    headers.append('Authorization', 'Basic ' + btoa(token + ':'));
+
+    fetch(url, {headers: headers})
+        .then(response => response.json())
+        .then(data => {
+            data.terminus_schedules.forEach(elt => {
+                let infos = document.getElementById("infos");
+                let edi = elt.display_informations;
+                infos.innerHTML = "<p id='titre'>".concat(value.name.toUpperCase(), "</p>");
+                infos.innerHTML = infos.innerHTML + buildInfos(value, edi.direction, edi.label, elt.date_times);
+                drawPicto(edi); //picto_adders.js
+            });
+        })
+}
+
+function foundStation(e){
     zone.setRadius(1000);
     zone.setLatLng(e.latlng);
     zone.addTo(map);
@@ -57,45 +88,11 @@ function found_station(e){
                 });
 
                 marker = L.marker(value.coord, {icon: icon}).addTo(map).on('click', function(e){
-                    res = "";
-                    map.setView(value.coord, 17);
-                    path = {
-                        coverage: "fr-idf",
-                        stop_areas: value.id
-                    };
-                
-                    feature = "terminus_schedules";
-                
-                    request = new Request(path, feature, parameters);
-                    url = request.getUrl();
-                    token = request.getKey();
-                
-                    headers = new Headers();
-                    headers.append('Authorization', 'Basic ' + btoa(token + ':'));
-
-                    fetch(url, {headers: headers})
-                        .then(response => response.json())
-                        .then(data => {
-                            data.terminus_schedules.forEach(elt => {
-                                let infos = document.getElementById("infos");
-                                let edi = elt.display_informations;
-                                infos.innerHTML = "<p id='titre'>".concat(value.name.toUpperCase(), "</p>");
-                                infos.innerHTML = infos.innerHTML + buildInfos(edi.direction, edi.label, elt.date_times);
-                                var url_2 = "https://data.ratp.fr/api/records/1.0/search/?dataset=pictogrammes-des-lignes-de-metro-rer-tramway-bus-et-noctilien&q=&lang=fr&rows=1&sort=indices_commerciaux&refine.indices_commerciaux=".concat(edi.label);
-                                fetch(url_2)
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        var pictos = document.getElementsByClassName("picto "+edi.label);
-                                        var nums = document.getElementsByClassName("num "+edi.label);
-                                        add_picto(data, pictos);
-                                        add_label(data, nums, edi);
-                                    });                            
-                                });
-                        })
-            })
+                    writeInfos(value);
+                })
             markers.push(marker);
         })
     })
 }
 
-map.addEventListener('click', found_station);
+map.addEventListener('click', foundStation);

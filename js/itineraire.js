@@ -1,4 +1,7 @@
-const map = create_map();
+const centre_lat = 48.850829615512964; 
+const centre_lng = 2.3453325726123047;
+
+const map = create_map(centre_lat, centre_lng);
 
 let infos = document.getElementById("infos");
 let index = 0;
@@ -29,15 +32,7 @@ function buildJourney(section) {
     } else if(section.type == "public_transport"){
         let edi = section.display_informations;
         res = res.concat(edi.physical_mode, "  <b class='num ", edi.label,"'></b><img class='picto ", edi.label, "'> ", edi.name, " direction ", edi.direction," > ");
-        var url_2 = "https://data.ratp.fr/api/records/1.0/search/?dataset=pictogrammes-des-lignes-de-metro-rer-tramway-bus-et-noctilien&q=&lang=fr&rows=1&sort=indices_commerciaux&refine.indices_commerciaux=".concat(edi.label);
-        fetch(url_2)
-        .then(response => response.json())
-        .then(data => {
-            var pictos = document.getElementsByClassName("picto "+edi.label);
-            var nums = document.getElementsByClassName("num "+edi.label);
-            add_picto(data, pictos);
-            add_label(data, nums, edi);
-        });
+        drawPicto(edi); //picto_adders.js
     }
     return res;
 }

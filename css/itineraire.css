@@ -1,15 +1,3 @@
-h1 {
-    height: 50px;
-    font-family: system-ui;
-    text-align: start;
-    margin-left: 50px;
-}
-
-#mapid{
-    flex-basis: calc(100% - 300px);
-    height: calc(100vh - 123px);
-}
-
 #titre {
     color: rgb(0, 0, 0);
     margin-bottom: 0;
@@ -18,8 +6,4 @@ h1 {
 .text {
     margin-bottom: 0;
     color: rgb(29, 29, 29);
-}
-
-#infos {
-    margin: 30px 100px;
 }

@@ -1,6 +1,6 @@
-function create_map(){
-    const centre_lat = 48.850829615512964; 
-    const centre_lng = 2.3453325726123047;
+function create_map(lat, lng){
+    const centre_lat = lat; 
+    const centre_lng = lng;
 
     const map = L.map('mapid').setView([centre_lat, centre_lng], 10);
 

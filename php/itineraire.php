@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Ontime</title>
     <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../css/map.css">
     <link rel="stylesheet" href="../css/itineraire.css">
     <link rel="stylesheet" href="../css/sidebar.css">
     <?php

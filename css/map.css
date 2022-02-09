@@ -1,18 +1,6 @@
-h1 {
-    height: 50px;
-    font-family: system-ui;
-    text-align: start;
-    margin-left: 50px;
-}
-
 #mapid{
     flex-basis: calc(100% - 300px);
     height: calc(100vh - 123px);
-}
-
-#titre {
-    color: rgb(39, 13, 63);
-    margin-bottom: 0;
 }
 
 #infos {

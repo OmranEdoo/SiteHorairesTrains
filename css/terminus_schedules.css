@@ -4,13 +4,6 @@
     flex-grow: 2;
 }
 
-h1 {
-    height: 50px;
-    font-family: system-ui;
-    text-align: start;
-    margin-left: 50px;
-}
-
 #time {
     width: 70px;
     height: 30px;

@@ -27,7 +27,8 @@
     <?php
       include("bas.php");
     ?>
-      
+    
+    <script src="../js/picto_adder.js"></script>
     <script src="../js/request_builder.js"></script>
     <script src="../js/auto_completion.js"></script>
     <script src="../js/time.js"></script>

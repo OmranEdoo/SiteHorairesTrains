@@ -1,4 +1,3 @@
 <div id="bas">
-    <a href="">Contact</a>
-    <a href="">Informations</a>
+    <a href="mailto:omranedoo@gmail.com">Contact</a>
 </div>

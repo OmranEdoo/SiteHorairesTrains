@@ -17,3 +17,15 @@ function add_label(data, nums, edi){
         }
     })
 }
+
+function drawPicto(edi){
+    var url_2 = "https://data.ratp.fr/api/records/1.0/search/?dataset=pictogrammes-des-lignes-de-metro-rer-tramway-bus-et-noctilien&q=&lang=fr&rows=1&sort=indices_commerciaux&refine.indices_commerciaux=".concat(edi.label);
+    fetch(url_2)
+    .then(response => response.json())
+    .then(data => {
+        var pictos = document.getElementsByClassName("picto "+edi.label);
+        var nums = document.getElementsByClassName("num "+edi.label);
+        add_picto(data, pictos);
+        add_label(data, nums, edi);
+    });                            
+}
