@@ -25,6 +25,5 @@ function getActualTime(){
     }
     let cYear = currentDate.getFullYear().toString();
     let c = cYear.concat(cMonth, cDay, "T");
-    console.log(c);
     return c;
 }

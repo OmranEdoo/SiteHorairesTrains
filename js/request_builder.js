@@ -15,8 +15,7 @@ class Request {
 
     modifyValuePath(value) {
         if(value) {
-            let new_value = value.replaceAll(":", "%3A");
-            new_value = value.replaceAll(";", "%3B");
+            let new_value = value.replaceAll(":", "%3A").replaceAll(";", "%3B");
             return new_value;
         }
     }

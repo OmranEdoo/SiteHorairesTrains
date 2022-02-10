@@ -6,11 +6,12 @@ const map = create_map(centre_lat, centre_lng);
 let zone = L.circle([centre_lat, centre_lng], 0);
 let markers = [];
 
-var res = "";
+var res = '';
 
-function buildInfos(value, direction, ligne, times) {
+function buildInfos(name, direction, ligne, times) {
     if(times[0]){
-        res = res.concat(value.name, " > ", direction, " <b class='num ", ligne,"'></b><img src='' alt='' class='picto ", ligne, "'>", "<p>   Prochain train: ", convert_time(times[0].date_time), "</p>");
+        //res = `${name} > ${direction} <b class="num ${ligne}"></b><img src="" alt="" class="picto ${ligne}"><p>   Prochain train: ${convert_time(times[0].date_time)}</p>`;
+        res = res.concat(name, " > ", direction, " <b class='num ", ligne,"'></b><img src='' alt='' class='picto ", ligne, "'><p>   Prochain train: ", convert_time(times[0].date_time), "</p>");
     }
     if(times[1]){
         res = res.concat("<p>  Suivant: ", convert_time(times[1].date_time), "</p>");
@@ -42,7 +43,7 @@ function writeInfos(value){
                 let infos = document.getElementById("infos");
                 let edi = elt.display_informations;
                 infos.innerHTML = "<p id='titre'>".concat(value.name.toUpperCase(), "</p>");
-                infos.innerHTML = infos.innerHTML + buildInfos(value, edi.direction, edi.label, elt.date_times);
+                infos.innerHTML = infos.innerHTML + buildInfos(value.name, edi.direction, edi.label, elt.date_times);
                 drawPicto(edi); //picto_adders.js
             });
         })

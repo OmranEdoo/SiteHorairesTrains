@@ -2,6 +2,12 @@ var station_name = document.getElementById("station").value;
 var res = "";
 var time = getTime();
 
+function buildInfos(direction, ligne, times) {
+    // On créé la ligne qui sera affichée, elle inclut le nom de la station, le terminus, le logo de la ligne concerné et les deux prochaines heures de passage
+    res = res.concat(station_name, " > ", direction, " <b class='num ", ligne,"'></b><img src='' alt='' class='picto ", ligne, "'><p>   Prochain train: ", convert_time(times[0].date_time), "</p><p>  Suivant: ", convert_time(times[1].date_time), "</p>");
+    return res;
+}
+
 idPromise()
     .then((station_id) => {
         setTimeout(function(){console.log(station_id)},500);
@@ -31,12 +37,6 @@ idPromise()
 
         headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(token + ':'));
-
-        function buildInfos(direction, ligne, times) {
-            // On créé la ligne qui sera affichée, elle inclut le nom de la station, le terminus, le logo de la ligne concerné et les deux prochaines heures de passage
-            res = res.concat(station_name, " > ", direction," ", "<b class='num ", ligne,"'></b><img src='' alt='' class='picto ", ligne, "'><p>   Prochain train: ", convert_time(times[0].date_time), "</p><p>  Suivant: ", convert_time(times[1].date_time), "</p>");
-            return res;
-        }
 
         fetch(url, {headers: headers})
             .then(response => response.json())
